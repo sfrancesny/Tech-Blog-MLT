@@ -1,0 +1,58 @@
+<!-- views/signup.handlebars -->
+
+<section class="">
+  <h1 class="">Sign up!</h1>
+
+  <!-- Add a new user -->
+  <form id="addUserForm">
+    <div class="">
+      <div class="">
+        <div class="">
+          <label class="label">Username:</label>
+          <div class="">
+            <input type="text" class="input" name="username" placeholder="Username" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email:</label>
+          <div class="control">
+            <input type="email" class="input" name="email" placeholder="Email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password:</label>
+          <div class="control">
+            <input type="password" class="input" name="password" placeholder="Password (At least 6 characters, must contain a number and a letter)" required>
+          </div>
+        </div>
+        <div class="">
+          <div class="">
+            <button type="submit" class="">Add User</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  {{!-- <!-- List of users -->
+  <ul id="userList">
+    {{#each users}}
+    <li class="box">
+      <div class="">
+        <div class="">
+          <span class="">ID: {{id}}</span>
+        </div>
+        <div class="">
+          <span class="">Username: {{username}}</span>
+        </div>
+        <div class="">
+          <span class="">Email: {{email}}</span>
+        </div>
+        <div class="">
+          <button data-id="{{id}}" class="">Remove</button>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</section> --}}
