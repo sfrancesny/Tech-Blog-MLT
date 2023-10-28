@@ -1,58 +1,41 @@
 <!-- views/signup.handlebars -->
 
-<section class="">
-  <h1 class="">Sign up!</h1>
+<section class="signup-section">
+  <div class="container">
+    <header class="signup-header">
+      <h1>Sign up!</h1>
+    </header>
 
-  <!-- Add a new user -->
-  <form id="addUserForm">
-    <div class="">
-      <div class="">
-        <div class="">
-          <label class="label">Username:</label>
-          <div class="">
-            <input type="text" class="input" name="username" placeholder="Username" required>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Email:</label>
-          <div class="control">
-            <input type="email" class="input" name="email" placeholder="Email" required>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Password:</label>
-          <div class="control">
-            <input type="password" class="input" name="password" placeholder="Password (At least 6 characters, must contain a number and a letter)" required>
-          </div>
-        </div>
-        <div class="">
-          <div class="">
-            <button type="submit" class="">Add User</button>
-          </div>
+    <!-- Add a new user -->
+    <form id="addUserForm" class="user-form">
+      <div class="field">
+        <label for="username" class="label">Username:</label>
+        <div class="control">
+          <input type="text" class="input" id="username" name="username" placeholder="Username" required>
         </div>
       </div>
-    </div>
-  </form>
 
-  {{!-- <!-- List of users -->
-  <ul id="userList">
-    {{#each users}}
-    <li class="box">
-      <div class="">
-        <div class="">
-          <span class="">ID: {{id}}</span>
-        </div>
-        <div class="">
-          <span class="">Username: {{username}}</span>
-        </div>
-        <div class="">
-          <span class="">Email: {{email}}</span>
-        </div>
-        <div class="">
-          <button data-id="{{id}}" class="">Remove</button>
+      <div class="field">
+        <label for="email" class="label">Email:</label>
+        <div class="control">
+          <input type="email" class="input" id="email" name="email" placeholder="Email" required>
         </div>
       </div>
-    </li>
-    {{/each}}
-  </ul>
-</section> --}}
+
+      <div class="field">
+        <label for="password" class="label">Password:</label>
+        <div class="control">
+          <input type="password" class="input" id="password" name="password" placeholder="Password (At least 6 characters, must contain a number and a letter)" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <button type="submit" class="button is-primary">Add User</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src='/js/signup.js'></script>

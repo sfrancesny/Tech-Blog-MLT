@@ -1,15 +1,17 @@
 <!-- views/login.handlebars -->
 
-<section class="">
-  <div class="">
-    <div class="">
-      <h1 class="">Minorities Love Tech </h1>
-      <br />
-      <div class="">
-        <h2 class="">User Login</h2>
-        <form id="">
-          <div class="">
-            <label for="username" class="label">Username:</label>
+<section class="login-section">
+  <div class="container">
+    <div class="login-container">
+      <header class="login-header">
+        <h1>Minorities Love Tech</h1>
+      </header>
+      
+      <div class="login-form-container">
+        <h2 class="form-title">User Login</h2>
+        <form id="login-form">
+          <div class="field">
+            <label for="username-login" class="label">Username:</label>
             <div class="control">
               <input
                 type="text"
@@ -21,8 +23,9 @@
               />
             </div>
           </div>
-          <div class="">
-            <label for="password" class="label">Password:</label>
+          
+          <div class="field">
+            <label for="password-login" class="label">Password:</label>
             <div class="control">
               <input
                 type="password"
@@ -35,8 +38,9 @@
               />
             </div>
           </div>
-          <div class="">
-            <div class="">
+          
+          <div class="field">
+            <div class="control">
               <button
                 type="submit"
                 class="button is-primary"
@@ -46,14 +50,17 @@
               </button>
             </div>
           </div>
-          <p id="" class=""></p>
+          
+          <p id="login-error-message" class="error-message"></p>
         </form>
-        <nav class="">
-          <p>Not a user? <a href=''>Sign up here</a></p>
-          <p>Forgot your password? <a href=''>Reset it here</a></p>
+        
+        <nav class="login-navigation">
+          <p>Not a user? <a href='/signup' id="signup-link">Sign up here</a></p>
+          <p>Forgot your password? <a href='/reset-password' id="reset-password-link">Reset it here</a></p>
         </nav>
       </div>
     </div>
   </div>
 </section>
+
 <script src='/js/login.js'></script>

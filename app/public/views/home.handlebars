@@ -1,0 +1,35 @@
+<!-- views/home.handlebars -->
+
+<section class="home-section">
+  <div class="container">
+    <header class="home-header">
+      <h1>Welcome to Minorities Love Tech!</h1>
+    </header>
+
+    <nav class="navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        {{#if loggedIn}}
+          <li><a href="/logout">Log Out</a></li>
+        {{else}}
+          <li><a href="/login">Log In</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+
+    <div class="posts-container">
+      {{#if posts.length}}
+        {{#each posts as |post|}}
+          <article class="post">
+            <h2 class="post-title"><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+            <time datetime="{{post.createdAt}}">{{formatDate post.createdAt}}</time>
+            <p class="post-content">{{truncate post.content}}</p>
+          </article>
+        {{/each}}
+      {{else}}
+        <p>No posts to display.</p>
+      {{/if}}
+    </div>
+  </div>
+</section>

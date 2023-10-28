@@ -1,0 +1,33 @@
+<!-- views/dashboard.handlebars -->
+
+<section class="dashboard-section">
+  <div class="container">
+    <header class="dashboard-header">
+      <h1>Your Dashboard</h1>
+    </header>
+
+    <nav class="navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+    </nav>
+
+    <div class="posts-container">
+      {{#if userPosts.length}}
+        {{#each userPosts as |post|}}
+          <article class="post">
+            <h2 class="post-title"><a href="/dashboard/post/{{post.id}}">{{post.title}}</a></h2>
+            <time datetime="{{post.createdAt}}">{{formatDate post.createdAt}}</time>
+            <p class="post-content">{{truncate post.content}}</p>
+          </article>
+        {{/each}}
+      {{else}}
+        <p>You haven't created any posts yet.</p>
+      {{/if}}
+    </div>
+
+    <button class="add-post-button"><a href="/newPost">Add New Post</a></button>
+  </div>
+</section>
