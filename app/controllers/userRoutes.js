@@ -1,7 +1,11 @@
+// app\controllers\userRoutes.js
+
 import { Router } from 'express';
-const router = Router();
-import { renderLogin, login, logout, renderSignup, signup, renderDashboard } from './userController';
+
+// import { renderLogin, login, logout, renderSignup, signup, renderDashboard } from './userController';
 import { ensureAuthenticated } from '../utils/helperFunctions';
+
+const router = Router();
 
 router.get('/login', renderLogin);
 router.post('/login', login);

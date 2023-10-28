@@ -1,3 +1,5 @@
+// app\controllers\homeRoutes.js
+
 import express from 'express';
 import { Post, User, Comment } from '../models'; // import necessary models
 import withAuth from '../utils/helperFunctions.js'; // import helper functions if necessary

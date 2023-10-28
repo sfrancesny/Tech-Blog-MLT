@@ -1,9 +1,12 @@
+// app\controllers\resetPassword.js
+
 import { Router } from 'express';
-const router = Router();
 import { hash } from 'bcrypt';
 import { User } from '../models';
 import { randomBytes } from 'crypto';
 import { createTransport } from 'nodemailer';
+
+const router = Router();
 
 // transporter for sending emails
 const transporter = createTransport({

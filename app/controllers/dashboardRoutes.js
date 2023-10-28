@@ -1,3 +1,5 @@
+// app\controllers\dashboardRoutes.js
+
 import express from 'express';
 // import * as dashboardController from '../controllers/dashboardController.js';
 import { ensureAuthenticated } from '../utils/helperFunctions';

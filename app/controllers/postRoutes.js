@@ -1,6 +1,8 @@
+// app\controllers\postRoutes.js
+
 import { Router } from 'express';
 const router = Router();
-import { renderHome, renderPost, renderNewPost, createPost, renderEditPost, updatePost, deletePost } from './postController';
+// import { renderHome, renderPost, renderNewPost, createPost, renderEditPost, updatePost, deletePost } from './postController';
 import { ensureAuthenticated } from '../utils/helperFunctions';
 
 router.get('/', renderHome);

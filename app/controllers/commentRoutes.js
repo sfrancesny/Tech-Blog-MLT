@@ -1,3 +1,5 @@
+// app\controllers\commentRoutes.js
+
 import { Router } from 'express';
 const router = Router();
 import { createComment, deleteComment } from './commentController';
