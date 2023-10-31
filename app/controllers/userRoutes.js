@@ -3,7 +3,7 @@
 import { Router } from 'express';
 
 // import { renderLogin, login, logout, renderSignup, signup, renderDashboard } from './userController';
-import { ensureAuthenticated } from '../utils/helperFunctions';
+import { ensureAuthenticated } from '../utils/helperFunctions.js';
 
 const router = Router();
 

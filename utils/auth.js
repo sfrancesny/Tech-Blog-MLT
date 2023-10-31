@@ -1,7 +1,7 @@
 // utils\auth.js
 
-import { hashPassword, verifyPassword } from './utils/helperFunctions';
-import User from './models/userModel';
+import { hashPassword, verifyPassword } from './utils/helperFunctions.js';
+import User from './models/userModel.js';
 
 const registerUser = async (username, password) => {
   try {

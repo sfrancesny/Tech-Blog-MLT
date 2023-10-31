@@ -1,15 +1,19 @@
+// seeds\commentData.js
+  
+import { Comment } from '../models';
+
 const commentData = [
-    {
-      comment_text: 'I love coding and learning about the newest technologies in Web Development.',
-      user_id: 2, // comment was made by the second user
-      post_id: 1, //  comment belongs to the first post
-    },
-    {
-      comment_text: 'I have always wanted to become a Full Stack Developer!',
-      user_id: 1, // comment was made by the first user
-      post_id: 1, // comment belongs to the first post
-    },
-  ];
-  
-  export default commentData;
-  
+  { content: 'I love coding and learning about the newest technologies in Web Development.', userId: 1, postId: 1 },
+  { content: 'I have always wanted to become a Full Stack Developer!', userId: 2, postId: 2 },
+];
+
+const seedComments = async () => {
+  try {
+    await Comment.bulkCreate(commentData);
+    console.log('Comments seeded successfully!');
+  } catch (error) {
+    console.error('Error seeding comments:', error);
+  }
+};
+
+export default seedComments;

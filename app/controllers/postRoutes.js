@@ -3,7 +3,7 @@
 import { Router } from 'express';
 const router = Router();
 // import { renderHome, renderPost, renderNewPost, createPost, renderEditPost, updatePost, deletePost } from './postController';
-import { ensureAuthenticated } from '../utils/helperFunctions';
+import { ensureAuthenticated } from '../utils/helperFunctions.js';
 
 router.get('/', renderHome);
 router.get('/post/:id', renderPost);

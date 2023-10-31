@@ -1,7 +1,7 @@
 // app\models\postModel.js
 
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/dbConfig.js';
+import sequelize from '../../config/dbConfig.js';
 
 class Post extends Model {}
 
@@ -25,7 +25,7 @@ Post.init(
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User', // 'users' refers to table name
+        model: 'users', // 'users' refers to table name
         key: 'id', // 'id' refers to column name in persons table
       },
     },

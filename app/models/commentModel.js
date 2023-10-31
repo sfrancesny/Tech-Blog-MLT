@@ -1,7 +1,7 @@
 // app\models\commentModel.js
 
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/dbConfig.js';
+import sequelize from '../../config/dbConfig.js';
 
 class Comment extends Model {}
 
@@ -21,14 +21,14 @@ Comment.init(
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User', // 'users' refers to table name
+        model: 'users', // 'users' refers to table name
         key: 'id', // 'id' refers to column name in persons table
       },
     },
     postId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Post', // 'posts' refers to table name
+        model: 'posts', // 'posts' refers to table name
         key: 'id', // 'id' refers to column name in persons table
       },
     },

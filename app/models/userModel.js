@@ -1,7 +1,7 @@
 // app\models\userModel.js
 
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/dbConfig.js';
+import sequelize from '../../config/dbConfig.js';
 
 class User extends Model {}
 
@@ -36,6 +36,7 @@ User.init(
     // additional model options g
     sequelize, // pass the connection instance
     modelName: 'User', // the model name
+    tableName: 'users', // tables name 
     timestamps: false,
   }
 );

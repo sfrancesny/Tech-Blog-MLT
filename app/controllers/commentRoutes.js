@@ -2,8 +2,8 @@
 
 import { Router } from 'express';
 const router = Router();
-import { createComment, deleteComment } from './commentController';
-import { ensureAuthenticated } from '../utils/helperFunctions';
+// import { createComment, deleteComment } from './commentController';
+import { ensureAuthenticated } from '../utils/helperFunctions.js';
 
 router.post('/post/:postId/comment', ensureAuthenticated, createComment);
 router.delete('/post/:postId/comment/:commentId', ensureAuthenticated, deleteComment);

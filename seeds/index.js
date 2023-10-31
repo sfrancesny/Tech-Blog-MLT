@@ -1,28 +1,34 @@
-import { sync } from '../config/dbConfig';
-import { bulkCreate } from '../models/userModel';
-import { bulkCreate as _bulkCreate } from '../models/postModel';
-import { bulkCreate as __bulkCreate } from '../models/commentModel';
-import userData from './userData';
-import postData from './postData';
-import commentData from './commentData';
+import sequelize from '../config/dbConfig.js';
+import User from '../app/models/userModel.js';
+import Post from '../app/models/postModel.js';
+import Comment from '../app/models/commentModel.js';
+import userData from './userData.js';
+import postData from './postData.js';
+import commentData from './commentData.js';
 
 const seedDatabase = async () => {
-  await sync({ force: true });
+  try {
+    await sequelize.sync({ force: true });
 
-  await bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+    await User.bulkCreate(userData, {
+      individualHooks: true,
+      returning: true,
+    });
 
-  await _bulkCreate(postData, {
-    returning: true,
-  });
+    await Post.bulkCreate(postData, {
+      returning: true,
+    });
 
-  await __bulkCreate(commentData, {
-    returning: true,
-  });
+    await Comment.bulkCreate(commentData, {
+      returning: true,
+    });
 
-  process.exit(0);
+    console.log('Database seeded successfully!');
+  } catch (error) {
+    console.error('Error seeding the database:', error);
+  } finally {
+    process.exit(0);
+  }
 };
 
 seedDatabase();
