@@ -1,6 +1,5 @@
 // seeds\postData.js
-
-import { Post } from '../models';
+import Post from '../app/models/postModel.js';
 
 const postData = [
   {

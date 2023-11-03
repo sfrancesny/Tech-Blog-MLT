@@ -1,7 +1,5 @@
 // utils\auth.js
-
-import { hashPassword, verifyPassword } from './utils/helperFunctions.js';
-import User from './models/userModel.js';
+import User from '../app/models/userModel.js';
 
 const registerUser = async (username, password) => {
   try {
@@ -14,24 +12,43 @@ const registerUser = async (username, password) => {
   }
 };
 
-const loginUser = async (username, password) => {
+const loginUser = async (req, res) => {
   try {
+    const { username, password } = req.body;
     const user = await User.findOne({ where: { username } });
+
     if (!user) {
       console.error('User not found');
-      // Handle user not found (e.g., send error response)
+      res.status(401).send('User not found');
       return;
     }
 
     const isPasswordValid = await verifyPassword(password, user.password);
     if (isPasswordValid) {
-      // Proceed with login (e.g., generate session, token, etc.)
+      req.session.isAuthenticated = true;
+      req.session.user = user;
+      res.redirect('/dashboard');
     } else {
       console.error('Invalid password');
-      // Handle invalid password (e.g., send error response)
+      res.status(401).send('Invalid password');
     }
   } catch (error) {
     console.error('Error logging in:', error);
-    // Handle error (e.g., send error response)
+    res.status(500).send('An error occurred while trying to log in');
   }
 };
+
+export const logout = (req, res) => {
+  // Clear the session data
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Failed to destroy the session during logout:', err);
+      res.status(500).send('An error occurred while logging out');
+    } else {
+      // Redirect to the login page or home page
+      res.redirect('/login');
+    }
+  });
+}
+
+export { registerUser, loginUser}

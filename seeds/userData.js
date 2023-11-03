@@ -1,6 +1,5 @@
 // seeds\userData.js
-
-import { User } from '../models';
+import User from '../app/models/userModel.js';
 
 const userData = [
   {

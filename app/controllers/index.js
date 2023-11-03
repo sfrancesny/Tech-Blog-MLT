@@ -1,5 +1,5 @@
 // app\controllers\index.js
-
+import path from 'path';
 import { Router } from 'express';
 const router = Router();
 

@@ -1,57 +1,40 @@
 // app\controllers\homeRoutes.js
 
 import express from 'express';
-import { Post, User, Comment } from '../models'; // import necessary models
-import withAuth from '../utils/helperFunctions.js'; // import helper functions if necessary
+import { ensureAuthenticated } from '../../utils/helperFunctions.js';
+import Post from '../models/postModel.js';
+import User from '../models/userModel.js';
 
 const router = express.Router();
 
 // route to render the homepage
 router.get('/', async (req, res) => {
   try {
-    // get all posts and JOIN with user data
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
+    const posts = await Post.find().populate('user', 'username').exec();
 
-    // serialize data so the template can read it
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    // pass serialized data and session flag into template
     res.render('home', { 
-      posts, 
-      logged_in: req.session.logged_in 
+      posts: posts.map(post => post.toObject()), 
+      logged_in: req.session.isAuthenticated 
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).render('error', { error: err });
   }
 });
 
-// use withAuth middleware to prevent access to route
-router.get('/dashboard', withAuth, async (req, res) => {
+// use ensureAuthenticated middleware to prevent access to route
+router.get('/dashboard', ensureAuthenticated, async (req, res) => {
   try {
-    // find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
-    });
-
-    const user = userData.get({ plain: true });
-
+    const user = await User.findById(req.session.user._id).populate('posts').exec();
     res.render('dashboard', {
-      ...user,
+      ...user.toObject(),
       logged_in: true
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).render('error', { error: err });
   }
 });
+
 
 export default router;

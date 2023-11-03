@@ -2,7 +2,7 @@
 
 import { Router } from 'express';
 import { hash } from 'bcrypt';
-import { User } from '../models';
+import User from '../models/userModel.js';
 import { randomBytes } from 'crypto';
 import { createTransport } from 'nodemailer';
 

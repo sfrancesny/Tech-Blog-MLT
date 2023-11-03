@@ -1,6 +1,5 @@
 // seeds\commentData.js
-  
-import { Comment } from '../models';
+import Comment from '../app/models/commentModel.js';
 
 const commentData = [
   { content: 'I love coding and learning about the newest technologies in Web Development.', userId: 1, postId: 1 },

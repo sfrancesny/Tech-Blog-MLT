@@ -1,46 +1,43 @@
 import express from 'express';
-import { join } from 'path';
-import exphbs from 'express-handlebars';
 import session from 'express-session';
-import Sequelize from 'sequelize';
-import SequelizeStore from 'connect-session-sequelize';
-import dbConfig from './config/dbConfig.js';
+import { engine } from 'express-handlebars';
+import sequelize from './config/dbConfig.js';
+import routes from './app/controllers/index.js';
+import path from 'path';
+import connectSessionSequelize from 'connect-session-sequelize';
+
+const SequelizeStore = connectSessionSequelize(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set up Handlebars.js as the default template engine.
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+const __dirname = path.dirname(new URL(import.meta.url).pathname); 
 
-// Middleware
+const sess = {
+  secret: 'super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(join(__dirname, 'app/public')));
-
-// Sessions
-const sessionStore = new (SequelizeStore(session.Store))({
-  db: dbConfig,
-});
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: 'auto' },
-  })
-);
-
-// Import routes
-import routes from './app/controllers/index.js';
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-// sync Sequelize models to the database, then turn on the server
-dbConfig.sync({ force: false }).then(() => {
-  // Sync session store after DB sync
-  sessionStore.sync();
-  app.listen(PORT, () => console.log(`Now listening on port ${PORT}!`));
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
 });
